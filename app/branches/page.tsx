@@ -13,9 +13,9 @@ export const metadata: Metadata = {
 export default async function BranchesPage({
   searchParams,
 }: {
-  searchParams: Promise<{ district?: string }>;
+  searchParams: Promise<{ district?: string; q?: string }>;
 }) {
-  const [branches, { district }] = await Promise.all([getPharmacies(), searchParams]);
+  const [branches, { district, q }] = await Promise.all([getPharmacies(), searchParams]);
 
   return (
     <>
@@ -23,7 +23,7 @@ export default async function BranchesPage({
         title="Салбарын байршил"
         subtitle={`Улаанбаатар хотын ${branches.length} салбар эмийн сангаас өөрт ойрыг олж, ажлын цаг, утас, чиглэлийг нэг дороос харна уу.`}
       />
-      <BranchExplorer branches={branches} initialDistrict={district} />
+      <BranchExplorer branches={branches} initialDistrict={district} initialQuery={q?.slice(0, 80)} />
     </>
   );
 }

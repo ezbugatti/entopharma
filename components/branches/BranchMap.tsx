@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import L from "leaflet";
 import type { Branch } from "@/lib/types";
-import { directionsUrl } from "./BranchCard";
+import { directionsUrl } from "./shared";
 
 // ento.mn-ийн branch/MapComponent-тэй ижил marker
 const icon = new L.Icon({
@@ -65,7 +65,7 @@ export default function BranchMap({
   onSelect: (id: string) => void;
 }) {
   return (
-    <MapContainer center={UB_CENTER} zoom={12} scrollWheelZoom className="h-full w-full rounded-3xl">
+    <MapContainer center={UB_CENTER} zoom={12} scrollWheelZoom className="h-full w-full">
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution="&copy; OpenStreetMap contributors"

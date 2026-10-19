@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { BadgeCheck, Lightbulb, ShieldCheck, Trophy, type LucideIcon } from "lucide-react";
 import PageHero from "@/components/ui/PageHero";
-import SectionHeading, { Badge } from "@/components/ui/SectionHeading";
+import SectionHeading, { Eyebrow } from "@/components/ui/SectionHeading";
+import Cross from "@/components/ui/Cross";
+import WhyUs from "@/components/home/WhyUs";
 import GroupSection from "@/components/home/GroupSection";
 import CtaBand from "@/components/home/CtaBand";
 import { getPharmacies } from "@/lib/branches";
@@ -44,86 +46,82 @@ export default async function AboutPage() {
   return (
     <>
       <PageHero
-        title="Энто Фарм ХХК"
-        subtitle={`Хэрэглэгчдийн хэрэгцээ шаардлагад нийцсэн, чанартай эм, эрүүл мэндийн бүтээгдэхүүнийг хүргэх зорилготойгоор Улаанбаатар хотод ${branches.length} салбар эмийн сантай үйл ажиллагаа явуулж байна.`}
+        title="Бидний тухай"
+        subtitle={`Энто Фарм ХХК нь ЭНТО ГРУПП-ийн охин компани бөгөөд Улаанбаатар хотод ${branches.length} салбар эмийн сантайгаар үйл ажиллагаа явуулж байна.`}
+        image="/images/consultation.webp"
+        imageAlt="Эм зүйч үйлчлүүлэгчид зөвлөгөө өгч байна"
       />
 
       {/* Танилцуулга */}
-      <section className="mx-auto flex w-full max-w-[900px] flex-col gap-8 px-4">
-        <div className="relative h-[220px] w-full overflow-hidden rounded-2xl md:h-[420px]">
+      <section className="mx-auto grid w-[1280px] max-w-full grid-cols-1 gap-12 px-4 pb-20 sm:px-6 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
+        <div className="relative aspect-[4/3] overflow-hidden rounded-[40px] lg:aspect-auto lg:min-h-[440px]">
           <Image
-            src="/images/consultation.webp"
-            alt="Эм зүйч үйлчлүүлэгчид зөвлөгөө өгч байна"
+            src="/images/pharmacists.webp"
+            alt="ЭНТО ФАРМ-ын эм зүйчид"
             fill
-            sizes="(min-width: 900px) 900px, 100vw"
+            sizes="(min-width: 1024px) 640px, 100vw"
             className="object-cover"
           />
         </div>
-        <div className="flex flex-col gap-4 text-base leading-7 text-ink-500">
-          <p>
-            Бид үйлчлүүлэгчдэдээ хамгийн хялбар, түргэн шуурхай байдлаар шаардлагатай бүтээгдэхүүнээ авах боломжийг
-            бүрдүүлсэн. Мэргэжлийн эм зүйчдийн зөвлөгөө, найдвартай бүтээгдэхүүн, тав тухтай орчин бүхий салбаруудаараа
-            дамжуулан бид өдөр бүр олон мянган хүнд эрүүл мэндийн хэрэгцээгээ хангахад нь тусалдаг.
+        <div className="flex flex-col justify-center gap-5 text-base leading-7 text-ink-500">
+          <Eyebrow>Танилцуулга</Eyebrow>
+          <p className="font-display text-2xl leading-9 font-bold tracking-[-0.01em] text-pine-900">
+            Хэрэглэгчдийн хэрэгцээ шаардлагад нийцсэн, чанартай эм, эрүүл мэндийн бүтээгдэхүүнийг хүргэх нь бидний
+            зорилго.
           </p>
           <p>
-            Эм зүйч, эм найруулагч нарынхаа мэдлэг боловсролд ихээхэн анхаарч, өндөр мэдлэгтэй, ёс суртахуунтай ажилтан
-            байлгаж чанартай үйлчилгээ үзүүлэхийг эрмэлздэг. Үүний тулд мэргэжлийн болон харилцаа, үйлчилгээний
-            сургалтуудыг тогтмол зохион байгуулж, цаашдын үйл ажиллагаагаа улам сайжруулахаар ажиллаж байна.
+            Бид үйлчлүүлэгчдэдээ шаардлагатай бүтээгдэхүүнээ хамгийн хялбар, түргэн шуурхай авах боломжийг бүрдүүлсэн.
+            Мэргэжлийн эм зүйчдийн зөвлөгөө, найдвартай бүтээгдэхүүн, тав тухтай орчин бүхий салбаруудаараа дамжуулан
+            өдөр бүр олон мянган хүнд эрүүл мэндийн хэрэгцээгээ хангахад нь тусалдаг.
+          </p>
+          <p>
+            Эм зүйч, эм найруулагч нарынхаа мэдлэг боловсролд ихээхэн анхаарч, мэргэжлийн болон харилцаа, үйлчилгээний
+            сургалтуудыг тогтмол зохион байгуулдаг.
           </p>
         </div>
       </section>
 
       {/* Эрхэм зорилго */}
-      <section className="mx-auto w-full max-w-[1088px] px-4 py-16 md:py-24">
-        <div className="grid grid-cols-1 overflow-hidden rounded-[32px] bg-white shadow-card md:grid-cols-2">
-          <div className="flex flex-col justify-center gap-5 p-8 md:p-12">
-            <Badge className="self-start">Эрхэм зорилго</Badge>
-            <blockquote className="text-[22px] leading-8 font-semibold text-ink-700 md:text-[26px] md:leading-9">
-              “Иргэн бүрт чанартай эм, эрүүл мэндийн бүтээгдэхүүн, эмзүйн тусламж үйлчилгээг{" "}
-              <span className="text-brand-500">ойр, хүртээмжтэй</span> хүргэх.”
-            </blockquote>
-            <p className="text-base leading-6 text-ink-500">
-              ЭНТО ГРУПП-ийн эрүүл мэндийн салбарт хуримтлуулсан 27 жилийн туршлага, итгэлцэлд тулгуурлан бид
-              хэрэглэгчиддээ хамгийн ойр байх сүлжээг хөгжүүлсээр байна.
-            </p>
-          </div>
-          <div className="relative min-h-[260px]">
-            <Image
-              src="/images/pharmacists.webp"
-              alt="ЭНТО ФАРМ-ын эм зүйчид"
-              fill
-              sizes="(min-width: 768px) 544px, 100vw"
-              className="object-cover"
-            />
-          </div>
+      <section className="px-4 pb-20 sm:px-6">
+        <div className="cross-pattern relative mx-auto flex w-[1280px] max-w-full flex-col gap-6 overflow-hidden rounded-[40px] bg-pine-900 px-6 py-14 sm:px-14 md:py-20">
+          <Cross className="pointer-events-none absolute -top-20 -right-20 size-60 text-brand-500/10" />
+          <Eyebrow tone="light">Эрхэм зорилго</Eyebrow>
+          <blockquote className="relative max-w-[900px] font-display text-[26px] leading-[1.3] font-extrabold tracking-[-0.02em] text-white sm:text-[38px]">
+            Иргэн бүрт чанартай эм, эрүүл мэндийн бүтээгдэхүүн, эмзүйн тусламж үйлчилгээг{" "}
+            <span className="text-brand-300">ойр, хүртээмжтэй</span> хүргэх.
+          </blockquote>
+          <p className="max-w-[640px] text-base leading-7 text-white/65">
+            ЭНТО ГРУПП-ийн эрүүл мэндийн салбарт хуримтлуулсан 27 жилийн туршлага, итгэлцэлд тулгуурлан бид
+            хэрэглэгчиддээ хамгийн ойр байх сүлжээг хөгжүүлсээр байна.
+          </p>
         </div>
       </section>
 
       {/* Үнэт зүйлс */}
-      <section className="mx-auto flex w-full max-w-[1088px] flex-col gap-12 px-4 pb-8">
+      <section className="mx-auto flex w-[1280px] max-w-full flex-col gap-12 px-4 pb-20 sm:px-6">
         <SectionHeading
-          badge="Бидний үнэт зүйлс"
+          eyebrow="Үнэт зүйлс"
           title="Чанар, хариуцлага, хүндэтгэлтэй харилцаа"
           description="ЭНТО ГРУПП-ийн нийтлэг үнэт зүйлс нь салбар бүрийн өдөр тутмын үйлчилгээний суурь болдог."
         />
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {values.map(({ icon: Icon, title, description }) => (
-            <article
-              key={title}
-              className="group flex flex-col gap-6 rounded-3xl bg-white p-7 shadow-card transition-shadow duration-300 hover:shadow-card-hover"
-            >
-              <div className="inline-flex self-start rounded-xl bg-surface p-4 transition-colors duration-300 group-hover:bg-brand-500">
-                <Icon className="size-7 text-brand-500 transition-colors duration-300 group-hover:text-surface" strokeWidth={1.75} />
+        <ol className="grid grid-cols-1 border-t border-line sm:grid-cols-2 lg:grid-cols-4">
+          {values.map(({ icon: Icon, title, description }, i) => (
+            <li key={title} className="flex flex-col gap-5 border-b border-line py-8 sm:pr-8 lg:border-b-0 lg:[&:not(:first-child)]:border-l lg:[&:not(:first-child)]:pl-8">
+              <div className="flex items-center justify-between">
+                <span className="grid size-12 place-items-center rounded-2xl bg-mint text-brand-600">
+                  <Icon className="size-6" strokeWidth={1.75} />
+                </span>
+                <span className="font-display text-sm font-extrabold text-ink-300">{String(i + 1).padStart(2, "0")}</span>
               </div>
-              <div className="flex flex-col gap-2">
-                <h3 className="text-lg leading-7 font-semibold text-ink-700">{title}</h3>
-                <p className="text-sm leading-5 text-ink-500">{description}</p>
-              </div>
-            </article>
+              <h3 className="font-display text-xl font-bold text-pine-900">{title}</h3>
+              <p className="text-sm leading-6 text-ink-500">{description}</p>
+            </li>
           ))}
-        </div>
+        </ol>
       </section>
 
+      <WhyUs />
+      <div className="h-20 md:h-24" />
       <GroupSection />
       <CtaBand />
     </>

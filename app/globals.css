@@ -1,7 +1,12 @@
 @import "tailwindcss";
 @import "leaflet/dist/leaflet.css";
 
-/* ento.mn-ийн дизайн токенуудыг (app/globals.css, tailwind.config.js) дагасан */
+/*
+  ЭНТО ФАРМ дизайн токенууд.
+  ento.mn-ээс: brand teal (#00AC94), Inter үндсэн фонт, лотус лого.
+  Эмийн сангийн өөрийн дүр: дулаан цөцгий дэвсгэр, гүн нарсан ногоон, Manrope гарчиг,
+  капсул товч, "+" загалмай, нуман зураг.
+*/
 @theme {
   --color-brand-50: #e6f7f4;
   --color-brand-100: #ccf0e9;
@@ -13,26 +18,42 @@
   --color-brand-700: #006757;
   --color-brand-800: #004539;
   --color-brand-900: #00221c;
-  --color-glow: #aae3db;
 
-  --color-ink-900: #0c151d; /* darkprimary */
-  --color-ink-700: #243342; /* darksecondary */
-  --color-ink-500: #455a6f; /* darktertiary */
-  --color-ink-400: #52667a; /* nav */
-  --color-ink-300: #91a1b2; /* darkquaternary */
+  /* Гүн нарсан ногоон — дээд мөр, тоон үзүүлэлт, footer */
+  --color-pine-700: #1d4f47;
+  --color-pine-800: #143d37;
+  --color-pine-900: #0e2f2a;
+  --color-pine-950: #08201c;
 
-  --color-surface: #f9fafb; /* lightsecondary */
-  --color-surface-2: #eef1f4; /* lighttertiary */
-  --color-chip: #f3f4f6;
+  /* Дулаан суурь */
+  --color-cream: #f6f3ec;
+  --color-cream-2: #eee9df;
+  --color-line: #e5dfd3;
+  --color-mint: #e3f3ee;
+  --color-amber: #f2b544;
+  --color-amber-soft: #fcf0d6;
+
+  /* Текст — ногоовтор хар */
+  --color-ink-900: #10231f;
+  --color-ink-700: #1e3a35;
+  --color-ink-500: #4f6661;
+  --color-ink-400: #6b7f7a;
+  --color-ink-300: #9aaaa6;
+
+  /* Хуучин нэрс (OpenBadge г.м.) */
+  --color-surface: #f6f3ec;
+  --color-surface-2: #eee9df;
+  --color-chip: #eee9df;
   --color-success: #29cc6a;
 
   --font-sans: var(--font-inter), "Inter", system-ui, sans-serif;
+  --font-display: var(--font-manrope), "Manrope", var(--font-inter), system-ui, sans-serif;
 
-  --shadow-card: 0px 12px 48px 0px rgba(12, 21, 29, 0.06);
-  --shadow-card-hover: 0px 12px 48px 0px rgba(0, 172, 148, 0.2);
-  --shadow-brand-soft: 0px 4px 20px 0px rgba(0, 172, 148, 0.2);
-  --shadow-brand: 0px 8px 24px 0px rgba(0, 172, 148, 0.48);
-  --shadow-header: 0px 2px 40px 0px rgba(0, 0, 0, 0.02);
+  --shadow-soft: 0 1px 2px rgba(16, 35, 31, 0.04), 0 8px 24px rgba(16, 35, 31, 0.06);
+  --shadow-lift: 0 18px 40px -16px rgba(0, 138, 118, 0.45);
+  --shadow-float: 0 24px 48px -20px rgba(16, 35, 31, 0.28);
+
+  --radius-arch: 999px 999px 40px 40px;
 }
 
 html {
@@ -40,10 +61,26 @@ html {
 }
 
 body {
-  background-color: var(--color-surface);
+  background-color: var(--color-cream);
   color: var(--color-ink-700);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Нуман (apothecary цонх) хэлбэрийн зурагны хүрээ */
+.arch {
+  border-radius: var(--radius-arch);
+}
+
+/* Гарчгийн тодруулга — тэмдэглэгээний үзэг шиг доогуур зураас */
+.marker {
+  background: linear-gradient(transparent 62%, var(--color-brand-100) 62%, var(--color-brand-100) 92%, transparent 92%);
+  padding: 0 0.08em;
+}
+
+/* "+" загалмайн давтагдах хээ */
+.cross-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'%3E%3Cpath d='M20 14h4v6h6v4h-6v6h-4v-6h-6v-4h6z' fill='%23ffffff' fill-opacity='0.06'/%3E%3C/svg%3E");
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -61,7 +98,7 @@ body {
 /* Leaflet */
 .leaflet-container {
   font-family: inherit;
-  background: var(--color-surface-2);
+  background: var(--color-cream-2);
 }
 .branch-marker,
 .branch-marker-active {
@@ -69,13 +106,12 @@ body {
 }
 .leaflet-popup-content-wrapper {
   border-radius: 16px;
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--shadow-soft);
 }
 .leaflet-popup-content {
   margin: 14px 16px;
 }
 
-/* Хэвтээ гүйдэг жагсаалт */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }

@@ -1,14 +1,22 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { site } from "@/lib/site";
 
+// Монгол Ө, Ү үсэг "cyrillic-ext" subset-д байдаг
 const inter = Inter({
-  subsets: ["latin", "cyrillic"],
+  subsets: ["latin", "cyrillic", "cyrillic-ext"],
   display: "swap",
   variable: "--font-inter",
+});
+
+const manrope = Manrope({
+  subsets: ["latin", "cyrillic", "cyrillic-ext"],
+  weight: ["600", "700", "800"],
+  display: "swap",
+  variable: "--font-manrope",
 });
 
 export const metadata: Metadata = {
@@ -38,7 +46,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="mn" className={inter.variable}>
+    <html lang="mn" className={`${inter.variable} ${manrope.variable}`}>
       <body className="font-sans">
         <div className="flex min-h-screen flex-col">
           <Header />

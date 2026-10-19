@@ -3,17 +3,26 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { MapPin, Menu, Phone, X } from "lucide-react";
+import { ArrowUpRight, MapPin, Menu, Phone, X } from "lucide-react";
 import Logo from "@/components/Logo";
 import ButtonLink from "@/components/ui/ButtonLink";
+import Cross from "@/components/ui/Cross";
 import { navigation, site } from "@/lib/site";
 import { cn } from "@/lib/cn";
 
 export default function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => setOpen(false), [pathname]);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -25,110 +34,128 @@ export default function Header() {
   const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
 
   return (
-    <header className="sticky top-0 z-50 h-20 w-full bg-surface/72 shadow-header backdrop-blur-[20px]">
-      <div className="mx-auto flex h-20 w-[1440px] max-w-full items-center justify-between px-4 sm:px-6">
-        <Logo />
-
-        {/* Desktop nav — ento.mn-ийн hover glow эффект */}
-        <nav className="mx-4 hidden lg:flex" aria-label="Үндсэн цэс">
-          <ul className="flex items-center gap-4">
-            {navigation.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  aria-current={isActive(item.href) ? "page" : undefined}
-                  className={cn(
-                    "inline-block px-3 py-2 text-sm leading-5 font-semibold whitespace-nowrap transition-colors hover:text-brand-500 hover:[text-shadow:0_0_24px_#00AC94]",
-                    isActive(item.href) ? "text-brand-500" : "text-ink-400"
-                  )}
-                >
-                  {item.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        <div className="hidden items-center gap-3 lg:flex">
-          <ButtonLink href={site.phoneHref} variant="secondary" className="pr-5 pl-4">
-            <Phone className="size-4" />
-            {site.phone}
-          </ButtonLink>
-          <ButtonLink href="/branches">
-            <MapPin className="size-4" />
-            Салбар хайх
-          </ButtonLink>
-        </div>
-
-        <div className="flex items-center gap-3 lg:hidden">
-          <a
-            href={site.phoneHref}
-            aria-label={`Утас: ${site.phone}`}
-            className="rounded-lg bg-ink-900/4 p-2 text-ink-700 transition-colors hover:bg-ink-900/8"
-          >
-            <Phone className="size-5" />
+    <>
+      {/* Дээд мэдээллийн мөр — эмийн сангийн сайтуудын түгээмэл хэв маяг */}
+      <div className="bg-pine-900 text-[13px] leading-5 text-white/75">
+        <div className="mx-auto flex h-10 w-[1280px] max-w-full items-center justify-between gap-4 px-4 sm:px-6">
+          <a href={site.phoneHref} className="flex items-center gap-2 hover:text-white">
+            <Cross className="size-3.5 text-brand-300" />
+            <span className="hidden sm:inline">Эм зүйчийн лавлах утас</span>
+            <span className="font-semibold text-white">{site.phone}</span>
           </a>
+          <a
+            href={site.group.ento}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1 hover:text-white"
+          >
+            ЭНТО ГРУПП-ийн гишүүн
+            <ArrowUpRight className="size-3.5" />
+          </a>
+        </div>
+      </div>
+
+      <header
+        className={cn(
+          "sticky top-0 z-50 w-full border-b transition-colors duration-300",
+          scrolled ? "border-line bg-white/90 backdrop-blur-md" : "border-transparent bg-cream"
+        )}
+      >
+        <div className="mx-auto flex h-[72px] w-[1280px] max-w-full items-center justify-between px-4 sm:px-6">
+          <Logo />
+
+          <nav className="hidden lg:block" aria-label="Үндсэн цэс">
+            <ul className="flex items-center gap-1 rounded-full border border-line bg-white/70 p-1">
+              {navigation.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    aria-current={isActive(item.href) ? "page" : undefined}
+                    className={cn(
+                      "block rounded-full px-5 py-2 text-sm leading-5 font-semibold transition-colors",
+                      isActive(item.href) ? "bg-pine-900 text-white" : "text-ink-500 hover:text-pine-900"
+                    )}
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div className="hidden lg:block">
+            <ButtonLink href="/branches">
+              <MapPin className="size-4" />
+              Салбар хайх
+            </ButtonLink>
+          </div>
+
           <button
             onClick={() => setOpen(true)}
             aria-label="Цэс нээх"
             aria-expanded={open}
-            className="rounded-lg bg-ink-900/4 p-2 text-ink-700 transition-colors hover:bg-ink-900/8"
+            className="rounded-full border border-line bg-white p-2.5 text-pine-900 lg:hidden"
           >
-            <Menu className="size-6" />
+            <Menu className="size-5" />
           </button>
         </div>
-      </div>
+      </header>
 
-      {/* Mobile drawer */}
+      {/* Mobile drawer — баруун талаас */}
       <div
         className={cn(
-          "fixed inset-0 z-[60] bg-black/20 transition-opacity lg:hidden",
+          "fixed inset-0 z-[60] bg-pine-950/40 transition-opacity lg:hidden",
           open ? "opacity-100" : "pointer-events-none opacity-0"
         )}
         onClick={() => setOpen(false)}
       />
       <aside
         className={cn(
-          "fixed top-0 left-0 z-[61] flex h-dvh w-[90vw] max-w-xs flex-col bg-white shadow-xl transition-transform duration-300 lg:hidden",
-          open ? "translate-x-0" : "-translate-x-full"
+          "fixed top-0 right-0 z-[61] flex h-dvh w-[88vw] max-w-sm flex-col bg-cream shadow-float transition-transform duration-300 lg:hidden",
+          open ? "translate-x-0" : "translate-x-full"
         )}
         aria-hidden={!open}
       >
-        <div className="flex items-center justify-between border-b border-gray-100 px-4 py-4">
+        <div className="flex items-center justify-between px-5 py-4">
           <Logo />
-          <button onClick={() => setOpen(false)} aria-label="Цэс хаах" className="p-2 text-ink-700">
-            <X className="size-6" />
+          <button
+            onClick={() => setOpen(false)}
+            aria-label="Цэс хаах"
+            className="rounded-full border border-line bg-white p-2.5 text-pine-900"
+          >
+            <X className="size-5" />
           </button>
         </div>
-        <nav className="flex-1 px-4 py-6" aria-label="Гар утасны цэс">
-          <ul className="flex flex-col gap-6">
+        <nav className="flex-1 px-5 py-4" aria-label="Гар утасны цэс">
+          <ul className="flex flex-col gap-2">
             {navigation.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
                   tabIndex={open ? 0 : -1}
                   className={cn(
-                    "block py-1 text-lg font-semibold hover:text-brand-500",
-                    isActive(item.href) ? "text-brand-500" : "text-ink-700"
+                    "flex items-center justify-between rounded-2xl px-4 py-3.5 font-display text-lg font-bold",
+                    isActive(item.href) ? "bg-pine-900 text-white" : "text-pine-900 hover:bg-white"
                   )}
                 >
                   {item.name}
+                  <Cross className={cn("size-3.5", isActive(item.href) ? "text-brand-300" : "text-brand-500")} />
                 </Link>
               </li>
             ))}
           </ul>
         </nav>
-        <div className="flex flex-col gap-3 border-t border-gray-100 p-4">
+        <div className="flex flex-col gap-3 border-t border-line p-5">
           <ButtonLink href="/branches">
             <MapPin className="size-4" />
             Ойр салбар хайх
           </ButtonLink>
-          <ButtonLink href={site.phoneHref} variant="secondary">
+          <ButtonLink href={site.phoneHref} variant="outline">
             <Phone className="size-4" />
             {site.phone}
           </ButtonLink>
         </div>
       </aside>
-    </header>
+    </>
   );
 }

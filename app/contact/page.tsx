@@ -21,28 +21,29 @@ export default function ContactPage() {
   return (
     <>
       <PageHero
-        title="Бидэнтэй холбогдох"
+        title="Холбоо барих"
         subtitle="Санал, хүсэлт, гомдол болон хамтран ажиллах саналаа илгээнэ үү. Бид аль болох шуурхай хариу өгөхийг эрмэлзэнэ."
         image="/images/hotline.webp"
+        imageAlt="Лавлах утасны ажилтан"
       />
 
-      <section className="mx-auto grid w-full max-w-[1088px] grid-cols-1 gap-8 px-4 pb-20 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
-        <div className="flex flex-col gap-4">
+      <section className="mx-auto grid w-[1280px] max-w-full grid-cols-1 gap-8 px-4 pb-20 sm:px-6 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
+        <div className="flex flex-col gap-3">
           {contacts.map(({ icon: Icon, label, value, href }) => {
             const body = (
               <>
-                <span className="inline-flex shrink-0 rounded-xl bg-brand-500 p-3 shadow-brand">
-                  <Icon className="size-5 text-surface" />
+                <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-mint text-brand-600">
+                  <Icon className="size-5" />
                 </span>
-                <span className="flex flex-col gap-1">
-                  <span className="text-sm leading-5 text-ink-500">{label}</span>
-                  <span className="text-base leading-6 font-semibold text-ink-700">{value}</span>
+                <span className="flex flex-col gap-0.5">
+                  <span className="text-sm leading-5 text-ink-400">{label}</span>
+                  <span className="font-display text-base leading-6 font-bold text-pine-900">{value}</span>
                 </span>
               </>
             );
-            const cls = "flex items-start gap-4 rounded-3xl bg-white p-6 shadow-card transition-shadow";
+            const cls = "flex items-center gap-4 rounded-[24px] border border-line bg-white p-5 transition-colors";
             return href ? (
-              <a key={label} href={href} className={`${cls} hover:shadow-card-hover`}>
+              <a key={label} href={href} className={`${cls} hover:border-brand-500`}>
                 {body}
               </a>
             ) : (
@@ -53,13 +54,13 @@ export default function ContactPage() {
           })}
           <Link
             href="/branches"
-            className="group flex items-center justify-between gap-4 rounded-3xl border border-brand-200 bg-brand-50 p-6 text-brand-700 transition-colors hover:border-brand-500"
+            className="group flex items-center justify-between gap-4 rounded-[24px] bg-pine-900 p-6 text-white transition-colors hover:bg-pine-800"
           >
             <span className="flex flex-col gap-1">
-              <span className="text-base font-semibold">Салбартай шууд холбогдох уу?</span>
-              <span className="text-sm text-brand-700/80">Салбар бүрийн утас, ажлын цагийг харах</span>
+              <span className="font-display text-base font-bold">Салбартай шууд холбогдох уу?</span>
+              <span className="text-sm text-white/65">Салбар бүрийн утас, ажлын цагийг харах</span>
             </span>
-            <ArrowRight className="size-5 transition-transform group-hover:translate-x-1" />
+            <ArrowRight className="size-5 text-brand-300 transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
 

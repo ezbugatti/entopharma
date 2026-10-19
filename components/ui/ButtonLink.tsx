@@ -1,20 +1,20 @@
 import Link from "next/link";
 import { cn } from "@/lib/cn";
 
-type Variant = "primary" | "secondary" | "white" | "ghost";
+type Variant = "primary" | "dark" | "outline" | "white" | "ghost";
 
+// Капсул (эмийн капсул) хэлбэрийн товч — ento.mn-ийн rounded-lg товчноос ялгарна
 const variants: Record<Variant, string> = {
-  // ento.mn: bg-[#00AC94] + hover:shadow-[var(--shadow-brand-high)]
-  primary: "bg-brand-500 text-white hover:bg-brand-600 hover:shadow-brand",
-  // ento.mn: bg-[rgba(12,21,29,0.04)] + hover:bg-translucent-dark-8
-  secondary: "bg-ink-900/4 text-ink-700 hover:bg-ink-900/8",
-  white: "bg-white text-brand-600 hover:bg-brand-50",
-  ghost: "text-brand-500 hover:bg-brand-50",
+  primary: "bg-brand-500 text-white hover:bg-brand-600 hover:shadow-lift hover:-translate-y-0.5",
+  dark: "bg-pine-900 text-white hover:bg-pine-800 hover:-translate-y-0.5",
+  outline: "border border-line bg-white text-ink-700 hover:border-brand-500 hover:text-brand-600",
+  white: "bg-white text-pine-900 hover:bg-mint hover:-translate-y-0.5",
+  ghost: "text-brand-600 hover:bg-mint",
 };
 
 export const buttonClass = (variant: Variant = "primary", className?: string) =>
   cn(
-    "inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm leading-5 font-medium whitespace-nowrap transition-all duration-200 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500",
+    "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm leading-5 font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500",
     variants[variant],
     className
   );

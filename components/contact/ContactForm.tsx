@@ -8,7 +8,7 @@ import { CONTACT_TOPICS, site } from "@/lib/site";
 type State = { status: "idle" | "sending" | "sent" } | { status: "error"; message: string };
 
 const field =
-  "w-full rounded-xl border border-ink-900/8 bg-surface px-4 py-3 text-base text-ink-700 placeholder:text-ink-300 focus:border-brand-500 focus:bg-white focus:outline-none";
+  "w-full rounded-2xl border border-line bg-cream px-4 py-3 text-base text-ink-700 placeholder:text-ink-300 focus:border-brand-500 focus:bg-white focus:outline-none";
 
 export default function ContactForm() {
   const [state, setState] = useState<State>({ status: "idle" });
@@ -34,9 +34,9 @@ export default function ContactForm() {
 
   if (state.status === "sent") {
     return (
-      <div className="flex flex-col items-center justify-center gap-4 rounded-3xl bg-white p-10 text-center shadow-card">
+      <div className="flex flex-col items-center justify-center gap-4 rounded-[32px] border border-line bg-white p-10 text-center">
         <CircleCheck className="size-14 text-brand-500" strokeWidth={1.5} />
-        <h2 className="text-2xl font-semibold text-ink-700">Баярлалаа!</h2>
+        <h2 className="font-display text-2xl font-extrabold text-pine-900">Баярлалаа!</h2>
         <p className="max-w-sm text-ink-500">Таны хүсэлтийг хүлээн авлаа. Бид удахгүй тантай холбогдоно.</p>
         <button onClick={() => setState({ status: "idle" })} className={buttonClass("ghost")}>
           Дахин илгээх
@@ -46,9 +46,9 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="flex flex-col gap-5 rounded-3xl bg-white p-6 shadow-card sm:p-8">
+    <form onSubmit={onSubmit} className="flex flex-col gap-5 rounded-[32px] border border-line bg-white p-6 sm:p-8">
       <div className="flex flex-col gap-1">
-        <h2 className="text-2xl leading-8 font-semibold text-ink-700">Санал, хүсэлт илгээх</h2>
+        <h2 className="font-display text-2xl leading-8 font-extrabold text-pine-900">Санал, хүсэлт илгээх</h2>
         <p className="text-sm text-ink-500">* тэмдэгтэй талбарыг заавал бөглөнө үү.</p>
       </div>
 

@@ -1,45 +1,67 @@
+import Cross from "./Cross";
 import { cn } from "@/lib/cn";
 
-// ento.mn-ийн хэсгийн гарчгийн загвар: саарал pill badge + 32px гарчиг + тайлбар
-export function Badge({ children, className }: { children: React.ReactNode; className?: string }) {
+// "+ ГАРЧИГ" маягийн жижиг eyebrow — ento.mn-ийн саарал pill badge-ээс ялгарна
+export function Eyebrow({
+  children,
+  className,
+  tone = "brand",
+}: {
+  children: React.ReactNode;
+  className?: string;
+  tone?: "brand" | "light";
+}) {
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-2 rounded-[20px] bg-chip px-4 py-2 text-sm leading-5 font-semibold text-brand-500",
+        "inline-flex items-center gap-2 text-xs leading-4 font-bold tracking-[0.14em] uppercase",
+        tone === "brand" ? "text-brand-600" : "text-brand-300",
         className
       )}
     >
+      <Cross className="size-3.5" />
       {children}
     </span>
   );
 }
 
 export default function SectionHeading({
-  badge,
+  eyebrow,
   title,
   description,
-  align = "center",
+  align = "left",
+  tone = "dark",
   className,
 }: {
-  badge?: string;
+  eyebrow?: string;
   title: React.ReactNode;
   description?: React.ReactNode;
   align?: "center" | "left";
+  tone?: "dark" | "light";
   className?: string;
 }) {
   return (
     <div
       className={cn(
-        "flex flex-col gap-5",
+        "flex flex-col gap-4",
         align === "center" ? "items-center text-center" : "items-start text-left",
         className
       )}
     >
-      {badge && <Badge>{badge}</Badge>}
-      <h2 className="text-[26px] leading-[34px] font-semibold text-ink-700 sm:text-[32px] sm:leading-10">
+      {eyebrow && <Eyebrow tone={tone === "light" ? "light" : "brand"}>{eyebrow}</Eyebrow>}
+      <h2
+        className={cn(
+          "max-w-[720px] font-display text-[30px] leading-[1.15] font-extrabold tracking-[-0.02em] sm:text-[40px]",
+          tone === "light" ? "text-white" : "text-pine-900"
+        )}
+      >
         {title}
       </h2>
-      {description && <p className="max-w-[640px] text-base leading-6 text-ink-500">{description}</p>}
+      {description && (
+        <p className={cn("max-w-[600px] text-base leading-7", tone === "light" ? "text-white/70" : "text-ink-500")}>
+          {description}
+        </p>
+      )}
     </div>
   );
 }

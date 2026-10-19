@@ -28,8 +28,7 @@ for (const [from, to, width] of images) {
   console.log(`${to.padEnd(20)} ${info.width}x${info.height}  ${(info.size / 1024).toFixed(0)}KB`);
 }
 
-// Лого ба газрын зургийн тэмдэглэгээ
-await copyFile(path.join(src, "../Logo.svg"), "public/logo-ento.svg");
+// Газрын зургийн тэмдэглэгээ, favicon
 await mkdir(path.join(out, "markers"), { recursive: true });
 for (const f of ["logotrue.svg", "logofalse.svg"]) {
   await copyFile(path.join(src, "branches", f), path.join(out, "markers", f));
@@ -37,4 +36,4 @@ for (const f of ["logotrue.svg", "logofalse.svg"]) {
 for (const f of ["favicon.ico", "apple-icon.png", "icon1.png"]) {
   await copyFile(path.join(src, "..", f), path.join("public", f));
 }
-console.log("Лого, marker, favicon хуулагдлаа.");
+console.log("Marker, favicon хуулагдлаа.");

@@ -6,53 +6,47 @@ const reasons: { icon: LucideIcon; title: string; description: string }[] = [
     icon: BookOpenCheck,
     title: "Эмзүйн өндөр мэдлэг",
     description:
-      "Эм зүйч, эм найруулагч нар маань мэргэжлийн болон харилцаа, үйлчилгээний сургалтад тогтмол хамрагдаж, эмийн зөв хэрэглээний талаар найдвартай зөвлөгөө өгдөг.",
+      "Эм зүйч, эм найруулагч нар маань мэргэжлийн болон харилцаа, үйлчилгээний сургалтад тогтмол хамрагддаг.",
   },
   {
     icon: Armchair,
     title: "Тав тухтай орчин",
-    description:
-      "Цэвэр, гэгээлэг, эмх цэгцтэй салбаруудад хэрэгцээт бүтээгдэхүүнээ хамгийн хялбар, түргэн шуурхай авах боломжийг бүрдүүлсэн.",
+    description: "Цэвэр, гэгээлэг салбаруудад хэрэгтэй бүтээгдэхүүнээ хялбар, түргэн шуурхай аваарай.",
   },
   {
     icon: PackageSearch,
     title: "Бүтээгдэхүүний өргөн сонголт",
-    description:
-      "ЭНТО ГРУПП-ийн 20 улсын 80 гаруй үйлдвэрлэгчтэй хамтын ажиллагаанд тулгуурласан, чанарын баталгаатай эм, эрүүл мэндийн бүтээгдэхүүн.",
+    description: "Группын нэгдсэн агуулах, түгээлтэд тулгуурласан чанарын баталгаатай бүтээгдэхүүн.",
   },
   {
     icon: HeartHandshake,
     title: "Найрсаг харилцаа",
-    description:
-      "Үйлчлүүлэгч бүрийг хүндэтгэлтэй, найрсаг хүлээн авч, хэрэгцээг нь сонсож ойлгох нь бидний үйлчилгээний үндэс.",
+    description: "Үйлчлүүлэгч бүрийг хүндэтгэлтэй хүлээн авч, хэрэгцээг нь сонсож ойлгоно.",
   },
 ];
 
-// ento.mn-ийн OurValues картын загвар: icon хайрцаг hover дээр ногоон болно
 export default function WhyUs() {
   return (
-    <section className="mx-auto flex w-full max-w-[1088px] flex-col gap-12 px-4 py-16 md:gap-16">
-      <SectionHeading
-        align="left"
-        badge="Яагаад ЭНТО ФАРМ гэж?"
-        title="Эрүүл мэндийн хэрэгцээ бүрт итгэлтэй түнш"
-        description="Өдөр бүр олон мянган хүнд эрүүл мэндийн хэрэгцээгээ хангахад нь туслахдаа бид дараах зарчмыг баримталдаг."
-      />
-      <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
-        {reasons.map(({ icon: Icon, title, description }) => (
-          <article
-            key={title}
-            className="group flex flex-col items-start gap-8 rounded-3xl bg-white p-8 shadow-card transition-shadow duration-300 hover:shadow-card-hover"
-          >
-            <div className="inline-flex items-center justify-center rounded-xl bg-surface p-4 transition-colors duration-300 group-hover:bg-brand-500">
-              <Icon className="size-8 text-brand-500 transition-colors duration-300 group-hover:text-surface" strokeWidth={1.75} />
-            </div>
-            <div className="flex flex-col gap-2">
-              <h3 className="text-xl leading-7 font-semibold text-ink-700">{title}</h3>
-              <p className="text-sm leading-5 font-medium text-ink-500">{description}</p>
-            </div>
-          </article>
-        ))}
+    <section className="border-y border-line bg-white">
+      <div className="mx-auto grid w-[1280px] max-w-full grid-cols-1 gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[0.8fr_2fr] lg:gap-16">
+        <SectionHeading
+          eyebrow="Бидний амлалт"
+          title="Яагаад ЭНТО ФАРМ гэж?"
+          description="Өдөр бүр олон мянган хүнд эрүүл мэндийн хэрэгцээгээ хангахад нь туслахдаа бид эдгээр зарчмыг баримталдаг."
+        />
+        <div className="grid grid-cols-1 gap-x-12 gap-y-10 sm:grid-cols-2">
+          {reasons.map(({ icon: Icon, title, description }) => (
+            <article key={title} className="flex gap-5">
+              <span className="grid size-14 shrink-0 place-items-center rounded-2xl bg-mint text-brand-600">
+                <Icon className="size-6" strokeWidth={1.75} />
+              </span>
+              <div className="flex flex-col gap-2">
+                <h3 className="font-display text-lg leading-7 font-bold text-pine-900">{title}</h3>
+                <p className="text-sm leading-6 text-ink-500">{description}</p>
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );

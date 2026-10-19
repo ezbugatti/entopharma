@@ -1,25 +1,52 @@
 import Image from "next/image";
+import Link from "next/link";
+import { ChevronRight } from "lucide-react";
+import Cross from "./Cross";
 
-// ento.mn-ийн business-area дэлгэрэнгүй хуудасны толгой: баннер зураг + шилэн (blur) карт
+// Дэд хуудасны толгой: breadcrumb + том гарчиг + нуман зураг
 export default function PageHero({
   title,
   subtitle,
-  image = "/images/banner.webp",
+  image,
+  imageAlt = "",
+  children,
 }: {
   title: string;
   subtitle: string;
   image?: string;
+  imageAlt?: string;
+  children?: React.ReactNode;
 }) {
   return (
-    <section className="px-4 pt-4 md:px-6">
-      <div className="relative mx-auto flex h-[200px] w-full max-w-[1800px] items-center justify-center md:h-[280px]">
-        <Image src={image} alt="" fill priority sizes="100vw" className="rounded-2xl object-cover" />
-        <div className="absolute top-1/2 left-1/2 flex w-[92%] -translate-x-1/2 translate-y-4 flex-col items-center gap-3 rounded-2xl border border-ink-900/4 bg-surface/48 px-5 py-8 text-center backdrop-blur-[30px] md:w-[864px] md:gap-5 md:rounded-3xl md:px-28 md:py-[60px]">
-          <h1 className="text-[24px] leading-8 font-semibold text-ink-700 md:text-[36px] md:leading-[44px]">{title}</h1>
-          <p className="max-w-[640px] text-sm leading-5 text-ink-500 md:text-base md:leading-6">{subtitle}</p>
+    <section className="relative overflow-hidden">
+      <Cross className="pointer-events-none absolute top-6 -right-12 size-40 -rotate-12 text-brand-100/60 lg:hidden" />
+      <div className="relative mx-auto grid w-[1280px] max-w-full grid-cols-1 items-end gap-10 px-4 pt-8 pb-12 sm:px-6 lg:grid-cols-[1fr_auto] lg:pt-12 lg:pb-16">
+        <div className="flex flex-col gap-5">
+          <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-sm text-ink-400">
+            <Link href="/" className="hover:text-brand-600">
+              Нүүр
+            </Link>
+            <ChevronRight className="size-3.5" />
+            <span aria-current="page" className="font-medium text-pine-900">
+              {title}
+            </span>
+          </nav>
+          <h1 className="font-display text-[38px] leading-[1.08] font-extrabold tracking-[-0.03em] text-pine-900 sm:text-[52px]">
+            {title}
+          </h1>
+          <p className="max-w-[620px] text-lg leading-8 text-ink-500">{subtitle}</p>
+          {children}
         </div>
+        {image && (
+          <div className="relative hidden lg:block">
+            <div className="arch absolute inset-x-5 top-8 -bottom-4 bg-mint" aria-hidden />
+            <div className="arch relative h-[300px] w-[250px] overflow-hidden">
+              <Image src={image} alt={imageAlt} fill priority sizes="250px" className="object-cover" />
+            </div>
+            <Cross className="absolute -top-2 -left-3 size-8 text-amber" />
+          </div>
+        )}
       </div>
-      <div className="h-24 md:h-36" />
     </section>
   );
 }
