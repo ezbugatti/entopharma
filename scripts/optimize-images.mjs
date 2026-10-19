@@ -12,9 +12,8 @@ const images = [
   ["business/pharma.jpg", "pharmacists.webp", 1600],
   ["business/detail/pharma1.jpg", "consultation.webp", 1600],
   ["business/detail/pharma.jpg", "interior.webp", 1600],
-  ["business/detail/pharmabackground.jpg", "banner.webp", 1920],
-  ["business/ento.jpg", "supply.webp", 1600],
   ["web zurag/HEL04998a copy.jpg", "hotline.webp", 1600],
+  ["hr/whyento.jpg", "team.webp", 1600],
 ];
 
 await mkdir(out, { recursive: true });

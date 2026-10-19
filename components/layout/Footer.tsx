@@ -10,6 +10,7 @@ const columns = [
     links: [
       { name: "Бидний тухай", href: "/about" },
       { name: "Салбарын байршил", href: "/branches" },
+      { name: "Хүний нөөц", href: "/hr" },
       { name: "Бидэнтэй холбогдох", href: "/contact" },
     ],
   },

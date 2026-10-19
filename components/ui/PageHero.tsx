@@ -6,12 +6,14 @@ import Cross from "./Cross";
 // Дэд хуудасны толгой: breadcrumb + том гарчиг + нуман зураг
 export default function PageHero({
   title,
+  crumb = title,
   subtitle,
   image,
   imageAlt = "",
   children,
 }: {
   title: string;
+  crumb?: string;
   subtitle: string;
   image?: string;
   imageAlt?: string;
@@ -28,7 +30,7 @@ export default function PageHero({
             </Link>
             <ChevronRight className="size-3.5" />
             <span aria-current="page" className="font-medium text-pine-900">
-              {title}
+              {crumb}
             </span>
           </nav>
           <h1 className="font-display text-[38px] leading-[1.08] font-extrabold tracking-[-0.03em] text-pine-900 sm:text-[52px]">

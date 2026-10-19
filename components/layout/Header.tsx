@@ -40,7 +40,7 @@ export default function Header() {
         <div className="mx-auto flex h-10 w-[1280px] max-w-full items-center justify-between gap-4 px-4 sm:px-6">
           <a href={site.phoneHref} className="flex items-center gap-2 hover:text-white">
             <Cross className="size-3.5 text-brand-300" />
-            <span className="hidden sm:inline">Эм зүйчийн лавлах утас</span>
+            <span className="hidden sm:inline">Эмийн сангийн лавлах утас</span>
             <span className="font-semibold text-white">{site.phone}</span>
           </a>
           <a
@@ -72,7 +72,7 @@ export default function Header() {
                     href={item.href}
                     aria-current={isActive(item.href) ? "page" : undefined}
                     className={cn(
-                      "block rounded-full px-5 py-2 text-sm leading-5 font-semibold transition-colors",
+                      "block rounded-full px-4 py-2 text-sm leading-5 font-semibold whitespace-nowrap transition-colors xl:px-5",
                       isActive(item.href) ? "bg-pine-900 text-white" : "text-ink-500 hover:text-pine-900"
                     )}
                   >
