@@ -137,7 +137,7 @@ export default function HrPage() {
               src="/images/pharmacists.webp"
               alt="ЭНТО ФАРМ-ын эм зүйчид ажлын байран дээр"
               fill
-              sizes="(min-width: 1024px) 580px, 100vw"
+              sizes="(min-width: 1024px) 1080px, 190vw"
               className="object-cover"
             />
           </div>

@@ -43,7 +43,7 @@ export default function PageHero({
           <div className="relative hidden lg:block">
             <div className="arch absolute inset-x-5 top-8 -bottom-4 bg-mint" aria-hidden />
             <div className="arch relative h-[300px] w-[250px] overflow-hidden">
-              <Image src={image} alt={imageAlt} fill priority sizes="250px" className="object-cover" />
+              <Image src={image} alt={imageAlt} fill priority sizes="450px" className="object-cover" />
             </div>
             <Cross className="absolute -top-2 -left-3 size-8 text-amber" />
           </div>

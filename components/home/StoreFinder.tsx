@@ -76,7 +76,7 @@ export default function StoreFinder({ branches }: { branches: Branch[] }) {
         <ul className="flex max-h-[520px] flex-col gap-3 overflow-y-auto pr-1" aria-live="polite">
           {list.map((b) => (
             <li key={b._id} className="flex items-center gap-4 rounded-2xl bg-white p-3 pr-4 transition-shadow hover:shadow-soft">
-              <BranchImage branch={b} sizes="64px" className="size-16 shrink-0 rounded-xl" />
+              <BranchImage branch={b} sizes="100px" className="size-16 shrink-0 rounded-xl" />
               <div className="flex min-w-0 flex-1 flex-col gap-1">
                 <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
                   <h3 className="font-display text-base leading-6 font-bold text-pine-900">{b.name}</h3>

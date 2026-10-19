@@ -68,12 +68,13 @@ export default function Hero({ branches, districts }: { branches: Branch[]; dist
           <div className="arch absolute inset-x-8 top-12 -bottom-5 bg-mint" aria-hidden />
           <div className="arch relative aspect-[4/5] overflow-hidden bg-cream-2">
             <Image
-              src="/images/hero.webp"
+              src="/images/hero-portrait.webp"
               alt="ЭНТО ФАРМ эмийн сангийн эм зүйчид"
               fill
               priority
               sizes="(min-width: 1024px) 500px, 90vw"
-              className="object-cover object-[50%_30%]"
+              quality={85}
+              className="object-cover"
             />
           </div>
 

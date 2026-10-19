@@ -50,7 +50,7 @@ export default function Categories() {
             src="/images/pharmacists.webp"
             alt="Эмийн сангийн тавиур дээрх бүтээгдэхүүн"
             fill
-            sizes="(min-width: 1024px) 620px, 100vw"
+            sizes="(min-width: 1024px) 720px, (min-width: 640px) 100vw, 140vw"
             className="object-cover transition-transform duration-700 group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-pine-950/90 via-pine-950/30 to-transparent" />

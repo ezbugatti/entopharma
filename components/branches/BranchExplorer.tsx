@@ -186,7 +186,7 @@ export default function BranchExplorer({
                   )}
                 >
                   <button onClick={() => select(b._id)} className="shrink-0 cursor-pointer" aria-label={`${b.name} газрын зураг дээр харах`}>
-                    <BranchImage branch={b} sizes="112px" className="size-24 rounded-2xl sm:size-28" />
+                    <BranchImage branch={b} sizes="170px" className="size-24 rounded-2xl sm:size-28" />
                   </button>
                   <div className="flex min-w-0 flex-1 flex-col gap-2 py-1 pr-1">
                     <div className="flex flex-wrap items-center gap-2">

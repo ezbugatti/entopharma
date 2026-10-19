@@ -21,7 +21,7 @@ export default function PharmacistCare() {
             src="/images/consultation.webp"
             alt="Эм зүйч үйлчлүүлэгчид зөвлөгөө өгч байна"
             fill
-            sizes="(min-width: 1024px) 600px, 100vw"
+            sizes="(min-width: 1024px) 700px, 120vw"
             className="object-cover"
           />
         </div>

@@ -59,7 +59,7 @@ export default async function AboutPage() {
             src="/images/pharmacists.webp"
             alt="ЭНТО ФАРМ-ын эм зүйчид"
             fill
-            sizes="(min-width: 1024px) 640px, 100vw"
+            sizes="(min-width: 1024px) 700px, 115vw"
             className="object-cover"
           />
         </div>
